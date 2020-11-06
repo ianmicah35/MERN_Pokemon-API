@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 const Pokemon = props => {
     const [pokemon, setPokemon] = useState([]);
@@ -15,17 +15,17 @@ const Pokemon = props => {
     //             })
 
     // Version 2 - useEffect
-    useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=807')
-            .then(response => response.json())
-            .then(response => setPokemon(response.results))
-    }, []);
+    // useEffect(() => {
+    //     fetch('https://pokeapi.co/api/v2/pokemon?limit=807')
+    //         .then(response => response.json())
+    //         .then(response => setPokemon(response.results))
+    // }, []);
 
     // Version 3 - Axios
-    // useEffect(() => {
-    //     axios.get('https://pokeapi.co/api/v2/pokemon?limit=807')
-    //         .then(response => console.log(response.data.results))
-    // }, [])
+    useEffect(() => {
+        axios.get('https://pokeapi.co/api/v2/pokemon?limit=807')
+            .then(response => setPokemon(response.data.results))
+    }, [])
 
     const [visible, setVisible] = useState(false);
     const toggleVis = () => {
